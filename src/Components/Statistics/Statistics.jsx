@@ -1,28 +1,34 @@
-import { Component } from "react";
 
-export class Statistics extends Component {
-  render() {
+
+export const Statistics = ({good, neutral, bad}) => {
     return (  
           <>
+          {good + neutral + bad > 0 ? (
+            <>
             <h2>Statistics</h2>
             <ul>
-              <li>Good: {this.props.good}</li>
-              <li>Neutral: {this.props.neutral}</li>
-              <li>Bad: {this.props.bad}</li>
+              <li>Good: {good}</li>
+              <li>Neutral: {neutral}</li>
+              <li>Bad: {bad}</li>
               <li>
-                Total: {this.props.good + this.props.neutral + this.props.bad}
+                Total: {good + neutral + bad}
               </li>
               <li>
                 Positive feedback:{" "}
                 {Math.round(
-                  (this.props.good /
-                    (this.props.good + this.props.neutral + this.props.bad)) *
+                  (good /
+                    (good + neutral + bad)) *
                     100
                 )}
                 %
               </li>
             </ul>
+            </>
+            
+          ) : (
+            <h2>There is no feedback</h2>
+          )}
+            
           </>
     );
-  }
 }
